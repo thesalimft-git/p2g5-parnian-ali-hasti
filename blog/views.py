@@ -16,7 +16,6 @@ def posts_page(request):
         request, 
         'blog/post_page.html', 
         context = {
-            'name': 'ali',
             'title': 'Blog | Post List'
         }
     )

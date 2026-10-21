@@ -1,21 +1,7 @@
-{% load static %}
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
-</head>
-<body>
+{% block content %}
 
-<button class="btn btn-danger">
-    test
-</button>
-    
-    <h1>
-        page template of home
-    </h1>
-</body>
-</html>
+<h1>home page</h1>
+
+{% endblock content %}
