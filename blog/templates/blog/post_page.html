@@ -2,6 +2,23 @@
 
 {% block content %}
     <h1>
-        post file html
+        Posts
     </h1>
+    <div class="container">
+        {% for post in posts %}
+            <h3>
+                {{post.title}}
+            </h3>
+            <p>
+                {{post.content}}
+            </p>
+        {% endfor %}
+    </div>
+
+
 {% endblock content %}
+
+
+
+
+
