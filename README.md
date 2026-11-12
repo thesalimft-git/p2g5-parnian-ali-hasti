@@ -68,3 +68,18 @@ model (داده و بانک داده)
 url (ادرس های درخواست)
 view (ظاهر میسازه (با رندر کردن داده داخل قالب))
 
+
+
+
+blog => post article
+
+posts => title, content, author, data, comment
+user => name, family, user, pass, ...
+comment =>
+
+
+
+model.py
+table
+
+clas

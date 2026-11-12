@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
-    login page
+    <div class="container px-5">
+        <div class="mx-auto border border-2 rounded-5">
+            <form action="" method="POST" class="">
+                {% csrf_token %}
+                <div class="form-field">
+                    <label class="form-label" for="username">username</label>
+                    <input class="form-control" type="text" id="username" name="username">
+                </div>
+                <div class="form-field">
+                    <label class="form-label" for="password">password</label>
+                    <input class="form-control" type="password" id="password" name="password">
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock content %}

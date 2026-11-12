@@ -15,10 +15,13 @@
       </ul>
     </div>
     <div>
-        <a href="/login" class="btn btn-sm btn-primary">Login</a href="/" >
+      {% if user.is_authenticated %}
         <a href="/logout" class="btn btn-sm btn-danger">Logout</a href="/" >
+      {% else %}
+        <a href="/login" class="btn btn-sm btn-primary">Login</a href="/" >
         <a href="/register" class="btn btn-sm btn-primary">Register</a href="/" >
-      </div>
+      {% endif %}
+    </div>
   </div>
 </nav>
 
