@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Post
+from datetime import datetime as dt
+
 
 def home_page(request):
     return render(
