@@ -19,6 +19,9 @@ def posts_page(request):
         content = request.POST['content']
         
         print(title, content)
+        
+        # validate the input
+        # save into db
     else:
         posts = Post.objects.filter(is_active=True)
         return render(
