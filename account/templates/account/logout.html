@@ -2,5 +2,13 @@
 
 
 {% block content %}
-    logout page
+<div class="container ">
+    <p>Are you sure to logout ?</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+            Logout
+        </button>
+    </form>
+</div>
 {% endblock content %}

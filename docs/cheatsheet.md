@@ -35,10 +35,10 @@ INSTALLED_APPS = [
 3- Add new path to urls.py file in [blog] app.
 ```python
 from django.urls import path
-from .views import home_page, posts_page
+from .views import home_page, post_list_view
 
 urlpatterns = [
-    path('posts/', posts_page),
+    path('posts/', post_list_view),
 ]
 ```
 
@@ -89,6 +89,8 @@ not yet
 2- Create a file called "base.html"
 3- Define some new blocks in base.html with unique name
 
+example of "template tags" of Django Template
+
 ```html
 {% include 'topbar.html' %}
 {% include 'mobile_menu.html' %}
@@ -126,13 +128,14 @@ url
 {% extend 'base.html' %}
 {% block <unique name> %} ...
 {% csrf_token %}    # send form data with POST method
-                    # CORS hacking
+                    # CROSS hacking
 
 
 <ul>
     {% for post in posts %}
         <li>{{ post.title }}</li>
     {% endfor %}
+    # {% /for %}
 </ul>
 
 
@@ -198,4 +201,85 @@ class Post(models.Model):
         null=True, 
         blank=True
     )
+
+    # to show the title of post in admin panel
+    def __str__(self) -> str:
+        return self.title
 ```
+
+
+
+
+
+## Login , logout
+
+1- write url
+
+```python
+from django.urls import path
+from .views import login_page_view, logout_page_view, register_page_view
+
+urlpatterns = [
+    path('login/', login_page_view),
+    path('logout/', logout_page_view),
+    path('register/', register_page_view),
+]
+```
+
+2- write views
+```python
+def login_page_view(request):
+    if request.method == 'POST':
+        
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        user = authenticate(
+            request, 
+            username=username, 
+            password=password
+        )
+
+        if user:
+            login(request, user)
+            # return redirect('home')  # change to your target URL name
+            
+    return render(
+        request, 
+        'account/login.html', 
+        {'title': 'Blog | Login'}
+    )
+```
+
+3- redirect after logout 
+```python
+# add name to each path: urls.py
+path('login/', login_page_view, name='login-page'),
+
+# redirect if needed: views.py
+from django.shortcuts import render, redirect
+
+def logout_page_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('login-page')
+    else:
+        return render(
+            request, 
+            'account/logout.html', 
+            {'title': 'Blog | Logout'}
+        )
+```
+
+
+
+## Http methods
+
+url => /posts/ ...
+- get     => list posts
+- post    => create new post
+
+url => /posts/pk ...
+- get       => retrieve, detail a post
+- delete    => delete a post
+- put       => update post

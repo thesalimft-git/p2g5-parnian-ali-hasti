@@ -14,13 +14,18 @@ def home_page(request):
     )
 
 def posts_page(request):
-    posts = Post.objects.filter(is_active=True)
-    
-    return render(
-        request, 
-        'blog/post_page.html', 
-        context = {
-            'title': 'Blog | Post List',
-            'posts': posts
-        }
-    )
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        
+        print(title, content)
+    else:
+        posts = Post.objects.filter(is_active=True)
+        return render(
+            request, 
+            'blog/post_page.html', 
+            context = {
+                'title': 'Blog | Post List',
+                'posts': posts
+            }
+        )
